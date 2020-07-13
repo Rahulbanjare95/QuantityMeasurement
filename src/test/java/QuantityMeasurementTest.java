@@ -19,6 +19,12 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(quantityMeasurement.equals(nullValue));
     }
 
+    @Test
+    public void givenReference_SameObject_ShouldReturnTrue() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,1.0);
+        QuantityMeasurement quantityMeasurement1 = quantityMeasurement;
+        Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
+    }
 
 
 }
