@@ -32,5 +32,10 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(quantityMeasurement.getClass().equals(message.getClass()));
     }
 
-
+    @Test
+    public void givenUnitValue_shouldCheck_EqualtiyInEntity_ReturnsTrue() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET,1.0);
+        Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
+    }
 }
