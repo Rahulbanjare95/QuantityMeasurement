@@ -63,5 +63,12 @@ public class QuantityMeasurementTest {
         Assert.assertTrue(quantityMeasurement.equals(reference));
     }
 
+    @Test
+    public void givenClassType_IfDifferentWhenINCHisUnit_ShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 0.0);
+        String check = "Hello Java";
+        Assert.assertFalse(quantityMeasurement.equals(check));
+    }
+
 
 }
