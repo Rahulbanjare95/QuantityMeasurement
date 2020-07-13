@@ -36,7 +36,7 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void givenUnitValue_shouldCheck_EqualtiyInEntity_ReturnsTrue() {
+    public void givenUnitValue_shouldCheck_EqualityInEntity_ReturnsTrue() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET, 1.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET, 1.0);
         Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
@@ -70,5 +70,11 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(quantityMeasurement.equals(check));
     }
 
+    @Test
+    public void givenUnitValue_ShouldCheckEqualityInEntity_ForInchReturnsTrue() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH, 1.0);
+        Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
+    }
 
 }
