@@ -1,4 +1,3 @@
-import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
 import service.QuantityMeasurement;
@@ -11,7 +10,15 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,0.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET,0.0);
         Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
-
     }
+
+    @Test
+    public void givenNullValue_shouldCheck() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,1.0);
+        QuantityMeasurement nullValue = null;
+        Assert.assertFalse(quantityMeasurement.equals(nullValue));
+    }
+
+
 
 }
