@@ -3,6 +3,8 @@ import org.junit.Test;
 import service.QuantityMeasurement;
 import service.Unit;
 
+import javax.lang.model.element.QualifiedNameable;
+
 public class QuantityMeasurementTest {
 
     @Test
@@ -38,4 +40,12 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET,1.0);
         Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
     }
+
+    @Test
+    public void givenZeroInch_shouldReturnEqual() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH,0.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH, 0.0);
+        Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
+    }
+
 }
