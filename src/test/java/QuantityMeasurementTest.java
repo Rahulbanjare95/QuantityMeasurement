@@ -27,6 +27,7 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = quantityMeasurement;
         Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
     }
+
     @Test
     public void givenClassType_IfDifferent_ShouldReturnFalse() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,1.0);
@@ -48,4 +49,10 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
     }
 
+    @Test
+    public void givenNullValue_ShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH,0.0);
+        QuantityMeasurement nullValue = null;
+        Assert.assertFalse(quantityMeasurement.equals(nullValue));
+    }
 }
