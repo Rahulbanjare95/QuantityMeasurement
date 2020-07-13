@@ -1,23 +1,17 @@
+import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
+import service.QuantityMeasurement;
+import service.Unit;
 
 public class QuantityMeasurementTest {
 
     @Test
-    public void givenQuantity_inFeet_ShouldConvert_toInches() throws QuantityMeasurementException {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-        double actual = quantityMeasurement.convert(1);
-        Assert.assertEquals(12,actual,0.0);
+    public void givenFeetToCheckEquality_ShouldReturnEqual() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,0.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET,0.0);
+        Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
+
     }
 
-    @Test
-    public void givenQuantity_inNegativeFeet_ShouldThrowException() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-        try {
-            double actual = quantityMeasurement.convert(-2);
-            Assert.assertEquals(24,actual,0.0);
-        } catch (QuantityMeasurementException e) {
-            e.getMessage();
-        }
-    }
 }
