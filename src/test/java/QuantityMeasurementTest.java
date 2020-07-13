@@ -25,6 +25,12 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = quantityMeasurement;
         Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
     }
+    @Test
+    public void givenClassType_IfDifferent_ShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,1.0);
+        String message = "Hello World!";
+        Assert.assertFalse(quantityMeasurement.getClass().equals(message.getClass()));
+    }
 
 
 }
