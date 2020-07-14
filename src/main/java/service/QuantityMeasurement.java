@@ -3,19 +3,25 @@ package service;
 import exception.QuantityMeasurementException;
 
 public class QuantityMeasurement {
-    Unit unit;
-    double value;
+    private  Unit unit;
+    Double value;
 
-    public QuantityMeasurement(Unit unit, double v) {
+    public QuantityMeasurement(Unit unit, Double value) {
         this.unit=unit;
         this.value=value;
     }
 
-    public double convert(int feet) throws QuantityMeasurementException {
-        if(feet < 0)
-            throw new QuantityMeasurementException("Negative Units Not allowed",
-                    QuantityMeasurementException.ExceptionType.NEGATIVE_UNIT_ERROR);
-        return feet*12;
+    public double convertFeetToYard(Double value) throws QuantityMeasurementException {
+        return (Unit.FEET.quantity)*(Unit.INCH.quantity)*value/Unit.YARD.quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuantityMeasurement that = (QuantityMeasurement) o;
+        return Double.compare(that.value, value) == 0 &&
+                unit == that.unit;
     }
 
 }
