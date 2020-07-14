@@ -67,7 +67,7 @@ public class QuantityMeasurementTest {
     public void givenClassType_IfDifferentWhenINCHisUnit_ShouldReturnFalse() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 0.0);
         String check = "Hello Java";
-        Assert.assertFalse(quantityMeasurement.equals(check));
+        Assert.assertFalse(quantityMeasurement.getClass().equals(check.getClass()));
     }
 
     @Test
@@ -76,5 +76,13 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH, 1.0);
         Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
     }
+
+    @Test
+    public void givenOneFeetAndOneInch_ShouldReturnNotEquals() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET, 1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH,1.0);
+        Assert.assertNotEquals(quantityMeasurement,quantityMeasurement1);
+    }
+
 
 }
