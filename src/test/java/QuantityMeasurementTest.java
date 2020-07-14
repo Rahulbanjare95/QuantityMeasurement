@@ -100,8 +100,26 @@ public class QuantityMeasurementTest {
 
     @Test
     public void givenOneYard_shouldReturn36inch() {
+        try {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD,1.0);
         double v = quantityMeasurement.convertYardToInch((double) 1);
         Assert.assertEquals(36,v,0.0);
+        } catch (QuantityMeasurementException e) {
+            e.printStackTrace();
+        }
     }
+
+    @Test
+    public void givenOneYardValueNegative_shouldThrowCustomException() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD, -1.0);
+            double convert = quantityMeasurement.convertYardToInch(-1.0);
+            Assert.assertEquals("Negative value not allowed",
+                    QuantityMeasurementException.ExceptionType.NEGATIVE_UNIT_ERROR);
+        } catch (QuantityMeasurementException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
