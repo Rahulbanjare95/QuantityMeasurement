@@ -156,6 +156,12 @@ public class QuantityMeasurementTest {
         String hello = "This Is String";
         Assert.assertFalse(quantityMeasurement.getClass().equals(hello.getClass()));
     }
+    @Test
+    public void givenUnitValuesOfCm_ShouldCheckEqualityInUnits() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 1.0);
+        Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
+    }
 
 
 
