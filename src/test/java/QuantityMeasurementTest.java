@@ -128,4 +128,12 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 0.0);
         Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
     }
+
+    @Test
+    public void givenZeroCm_andOtherCM_shouldReturnNotEqual() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 0.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 1.0);
+        Assert.assertNotEquals(quantityMeasurement,quantityMeasurement1);
+
+    }
 }
