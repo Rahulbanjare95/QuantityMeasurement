@@ -1,6 +1,7 @@
 import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.omg.CORBA.UNKNOWN;
 import service.QuantityMeasurement;
 import utility.Unit;
 
@@ -126,14 +127,29 @@ public class QuantityMeasurementTest {
     public void givenZeroCm_andZeroCm_ShouldReturnEqual() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 0.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 0.0);
-        Assert.assertEquals(quantityMeasurement,quantityMeasurement1);
+        Assert.assertEquals(quantityMeasurement, quantityMeasurement1);
     }
 
     @Test
     public void givenZeroCm_andOtherCM_shouldReturnNotEqual() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 0.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 1.0);
-        Assert.assertNotEquals(quantityMeasurement,quantityMeasurement1);
-
+        Assert.assertNotEquals(quantityMeasurement, quantityMeasurement1);
     }
+
+    @Test
+    public void givenCM_whenCheckedForNullShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM,1.0);
+        QuantityMeasurement nullValue = null;
+        Assert.assertFalse(quantityMeasurement.equals(nullValue));
+    }
+
+    @Test
+    public void givenCM_referenceToSameObject_ShouldReturnTrue() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
+        QuantityMeasurement dummyReference = quantityMeasurement;
+        Assert.assertTrue(quantityMeasurement.equals(dummyReference));
+    }
+
+
 }
