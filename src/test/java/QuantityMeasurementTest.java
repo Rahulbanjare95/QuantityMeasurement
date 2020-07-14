@@ -1,3 +1,4 @@
+import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
 import service.QuantityMeasurement;
@@ -89,4 +90,12 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.YARD,1.0);
         Assert.assertNotEquals(quantityMeasurement1,quantityMeasurement);
     }
+
+    @Test
+    public void givenThreeFeet_shouldReturnEqualToOneYard() throws QuantityMeasurementException {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET,3.0);
+        double v = quantityMeasurement.convertFeetToYard((double) 3);
+        Assert.assertEquals(1,v,0.0);
+    }
+
 }
