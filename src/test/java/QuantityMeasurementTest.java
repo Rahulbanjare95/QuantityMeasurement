@@ -98,4 +98,10 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(1,v,0.0);
     }
 
+    @Test
+    public void givenOneYard_shouldReturn36inch() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD,1.0);
+        double v = quantityMeasurement.convertYardToInch((double) 1);
+        Assert.assertEquals(36,v,0.0);
+    }
 }
