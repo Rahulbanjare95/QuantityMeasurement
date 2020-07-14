@@ -3,7 +3,6 @@ import org.junit.Test;
 import service.QuantityMeasurement;
 import service.Unit;
 
-import javax.lang.model.element.QualifiedNameable;
 
 public class QuantityMeasurementTest {
 
@@ -84,5 +83,10 @@ public class QuantityMeasurementTest {
         Assert.assertNotEquals(quantityMeasurement,quantityMeasurement1);
     }
 
-
+    @Test
+    public void givenOneYardAndOneInch_shouldReturnNotEquals() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH,1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.YARD,1.0);
+        Assert.assertNotEquals(quantityMeasurement1,quantityMeasurement);
+    }
 }
