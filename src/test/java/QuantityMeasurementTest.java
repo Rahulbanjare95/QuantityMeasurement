@@ -150,6 +150,13 @@ public class QuantityMeasurementTest {
         QuantityMeasurement dummyReference = quantityMeasurement;
         Assert.assertTrue(quantityMeasurement.equals(dummyReference));
     }
+    @Test
+    public void givenClassType_IfDifferent_ShouldReturnNotEqual() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
+        String hello = "This Is String";
+        Assert.assertFalse(quantityMeasurement.getClass().equals(hello.getClass()));
+    }
+
 
 
 }
