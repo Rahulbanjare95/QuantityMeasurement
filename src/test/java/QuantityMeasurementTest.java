@@ -1,7 +1,6 @@
 import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
-import org.omg.CORBA.UNKNOWN;
 import service.QuantityMeasurement;
 import utility.Unit;
 
@@ -139,7 +138,7 @@ public class QuantityMeasurementTest {
 
     @Test
     public void givenCM_whenCheckedForNullShouldReturnFalse() {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM,1.0);
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
         QuantityMeasurement nullValue = null;
         Assert.assertFalse(quantityMeasurement.equals(nullValue));
     }
@@ -150,12 +149,14 @@ public class QuantityMeasurementTest {
         QuantityMeasurement dummyReference = quantityMeasurement;
         Assert.assertTrue(quantityMeasurement.equals(dummyReference));
     }
+
     @Test
     public void givenClassType_IfDifferent_ShouldReturnNotEqual() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
         String hello = "This Is String";
         Assert.assertFalse(quantityMeasurement.getClass().equals(hello.getClass()));
     }
+
     @Test
     public void givenUnitValuesOfCm_ShouldCheckEqualityInUnits() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.CM, 1.0);
@@ -163,6 +164,10 @@ public class QuantityMeasurementTest {
         Assert.assertTrue(quantityMeasurement.equals(quantityMeasurement1));
     }
 
-
-
+    @Test
+    public void givenTwoInches_ShouldReturn_FiveCM() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 2.0);
+        double actual = quantityMeasurement.convertInchToCM(Unit.CM, 2);
+        Assert.assertEquals(5.0, actual, 0.0);
+    }
 }
