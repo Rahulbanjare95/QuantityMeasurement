@@ -216,11 +216,20 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void givenOneGallonand3780Liter_shouldReturnSeverThousandliter() {
+    public void givenOneGallonAnd3780Liter_shouldReturnSeverThousandLiter() {
     QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.GALLON,3780.0);
     QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.LITER, 3780.0);
         double v = quantityMeasurement.addTwoUnits(quantityMeasurement, quantityMeasurement1);
     Assert.assertEquals(7560,v,0.0);
     }
+
+    @Test
+    public void givenOneKGAndThousandGrams_ShouldReturnEquals() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.KG, 1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.GRAM, 1000.0);
+        double result = quantityMeasurement.convertKGTOGrams(quantityMeasurement, quantityMeasurement1);
+        Assert.assertEquals(1000,result,0.0);
+    }
+
 
 }
