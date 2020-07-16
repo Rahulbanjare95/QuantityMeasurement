@@ -230,6 +230,23 @@ public class QuantityMeasurementTest {
         double result = quantityMeasurement.convertKGTOGrams(quantityMeasurement, quantityMeasurement1);
         Assert.assertEquals(1000,result,0.0);
     }
+    @Test
+    public void givenOneTONEAndThousandKG_ShouldReturnEquals() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.TONNE, 1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.KG, 1000.0);
+        double result = quantityMeasurement.convertKGTOGrams(quantityMeasurement, quantityMeasurement1);
+        Assert.assertEquals(1000,result,0.0);
+    }
+
+    @Test
+    public void givenOneToneAndOneGrams_ShouldAddtoExpectedResult() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.TONNE,1.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.GRAM, 1000.0);
+        double added = quantityMeasurement.addTwoUnits(quantityMeasurement, quantityMeasurement1);
+        Assert.assertEquals(1001, added, 0.0);
+    }
+
+
 
 
 }
