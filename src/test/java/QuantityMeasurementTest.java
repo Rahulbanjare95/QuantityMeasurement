@@ -211,9 +211,16 @@ public class QuantityMeasurementTest {
     public void givenOneLitreAnd1000ml_ShouldReturnEqual() {
         QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER,1.0);
         QuantityMeasurement ml = new QuantityMeasurement(Unit.ML, 1000.0);
-        liter.convertTOML(liter, ml);
+        double v = liter.convertTOML(liter, ml);
+        Assert.assertEquals(1000,v,0.0);
     }
 
-
+    @Test
+    public void givenOneGallonand3780Liter_shouldReturnSeverThousandliter() {
+    QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.GALLON,3780.0);
+    QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.LITER, 3780.0);
+        double v = quantityMeasurement.addTwoUnits(quantityMeasurement, quantityMeasurement1);
+    Assert.assertEquals(7560,v,0.0);
+    }
 
 }
