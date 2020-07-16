@@ -5,6 +5,8 @@ import org.omg.CORBA.UNKNOWN;
 import service.QuantityMeasurement;
 import utility.Unit;
 
+import java.util.Objects;
+
 
 public class QuantityMeasurementTest {
 
@@ -197,4 +199,14 @@ public class QuantityMeasurementTest {
         double addedValues = quantityMeasurement.addTwoUnits(quantityMeasurement,quantityMeasurement1);
         Assert.assertEquals(24,addedValues,0.0);
     }
+    @Test
+    public void given1GallonAnd3Liters780ml_shouldReturnEqual() {
+        QuantityMeasurement gallon = new QuantityMeasurement(Unit.GALLON, 1.0);
+        QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER, 3780.0);
+        double v = gallon.convertGallonToLitre(gallon, liter);
+        Assert.assertEquals(3780,v, 0.0);
+    }
+
+    
+
 }
