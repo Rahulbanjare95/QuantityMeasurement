@@ -1,6 +1,7 @@
 import exception.QuantityMeasurementException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.omg.CORBA.UNKNOWN;
 import service.QuantityMeasurement;
 import utility.Unit;
 
@@ -189,6 +190,11 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(14, addedValues, 0.0);
     }
 
-
-
+    @Test
+    public void givenOneFeetAndOneFeet_ShouldReturnTwentyFourInch() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET, 12.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET, 12.0);
+        double addedValues = quantityMeasurement.addTwoUnits(quantityMeasurement,quantityMeasurement1);
+        Assert.assertEquals(24,addedValues,0.0);
+    }
 }
