@@ -115,8 +115,6 @@ public class QuantityMeasurementTest {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD, 1.0);
             double convert = quantityMeasurement.convertYardToInch(-1.0);
-            Assert.assertEquals("Negative value not allowed",
-                    QuantityMeasurementException.ExceptionType.NEGATIVE_UNIT_ERROR);
         } catch (QuantityMeasurementException e) {
             e.getMessage();
         }
@@ -167,7 +165,22 @@ public class QuantityMeasurementTest {
     @Test
     public void givenTwoInches_ShouldReturn_FiveCM() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 2.0);
-        double actual = quantityMeasurement.convertInchToCM(Unit.CM, 2);
-        Assert.assertEquals(5.0, actual, 0.0);
+        double actual = 0;
+        try {
+            actual = quantityMeasurement.convertInchToCM( 2);
+            Assert.assertEquals(5.0, actual, 0.0);
+        } catch (QuantityMeasurementException e) {
+            e.printStackTrace();
+        }
     }
+
+    @Test
+    public void givenTwoUnitsOfSameType_ShouldAddToInches() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH,2.0);
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH, 2.0);
+        double addedValues = quantityMeasurement.addTwoUnits(quantityMeasurement, quantityMeasurement1);
+        Assert.assertEquals(4.0,addedValues,0.0);
+    }
+
+
 }
