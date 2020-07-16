@@ -207,6 +207,13 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(3780,v, 0.0);
     }
 
-    
+    @Test
+    public void givenOneLitreAnd1000ml_ShouldReturnEqual() {
+        QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER,1.0);
+        QuantityMeasurement ml = new QuantityMeasurement(Unit.ML, 1000.0);
+        liter.convertTOML(liter, ml);
+    }
+
+
 
 }
