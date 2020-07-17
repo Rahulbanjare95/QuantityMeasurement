@@ -93,32 +93,33 @@ public class QuantityMeasurementTest {
     @Test
     public void givenThreeFeet_shouldReturnEqualToOneYard() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.FEET, 3.0);
-        double convert = quantityMeasurement.convertFeetToYard((double) 3);
-        Assert.assertEquals(1, convert, 0.0);
-
+        QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.YARD, 1.0);
+        boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+        Assert.assertTrue(b);
     }
 
     @Test
-    public void givenOneYard_shouldReturn36inch() throws QuantityMeasurementException{
+    public void givenOneYard_shouldReturn36inch(){
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD, 1.0);
             QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.INCH, 36.0);
-            double convert = quantityMeasurement.convert(quantityMeasurement1);
-            Assert.assertEquals(36, convert, 0.0);
+            boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+            Assert.assertTrue(b);
         } catch (QuantityMeasurementException e) {
             e.getMessage();
         }
     }
 
     @Test
-    public void givenOneYardValueNegative_shouldThrowCustomException() throws QuantityMeasurementException{
+    public void givenOneYardValueNegative_shouldThrowCustomException(){
         try {
-            QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD, 1.0);
-            double convert = quantityMeasurement.convertYardToInch(-1.0);
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.YARD, -1.0);
+            Assert.assertEquals("Negative values cannot be converted",QuantityMeasurementException.ExceptionType.NEGATIVE_UNIT_ERROR);
         } catch (QuantityMeasurementException e) {
-            e.getMessage();
+        e.printStackTrace();
         }
     }
+
 
     @Test
     public void givenZeroCm_andZeroCm_ShouldReturnEqual() throws QuantityMeasurementException{
@@ -170,16 +171,16 @@ public class QuantityMeasurementTest {
     public void given0Inch0Feet_ShouldReturn_Zero() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 0.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.FEET, 0.0);
-        double convert = quantityMeasurement.convert(quantityMeasurement1);
-        Assert.assertEquals(0,convert,0.0);
+        boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+        Assert.assertTrue(b);
     }
 
     @Test
     public void givenTwoInches_ShouldReturn_FiveCM() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.INCH, 2.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CM, 2.5);
-        double compare = quantityMeasurement.convert(quantityMeasurement1);
-        Assert.assertEquals(5,compare,0.0);
+        boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+        Assert.assertTrue(b);
     }
 
     @Test
@@ -204,20 +205,21 @@ public class QuantityMeasurementTest {
         double addedValues = quantityMeasurement.addTwoUnits(quantityMeasurement,quantityMeasurement1);
         Assert.assertEquals(24,addedValues,0.0);
     }
+
     @Test
     public void given1GallonAnd3Liters780ml_shouldReturnEqual() throws QuantityMeasurementException {
         QuantityMeasurement gallon = new QuantityMeasurement(Unit.GALLON, 1.0);
-        QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER, 3780.0);
-        double v = gallon.convert(liter);
-        Assert.assertEquals(3780,v, 0.0);
+        QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER, 3.78);
+        boolean b = gallon.compareTo(gallon, liter);
+        Assert.assertTrue(b);
     }
 
     @Test
     public void givenOneLitreAnd1000ml_ShouldReturnEqual() throws QuantityMeasurementException {
         QuantityMeasurement liter = new QuantityMeasurement(Unit.LITER,1.0);
         QuantityMeasurement ml = new QuantityMeasurement(Unit.ML, 1000.0);
-        double v = liter.convertTOML(liter, ml);
-        Assert.assertEquals(1000,v,0.0);
+        boolean v = liter.compareTo(liter, ml);
+        Assert.assertTrue(v);
     }
 
     @Test
@@ -232,15 +234,15 @@ public class QuantityMeasurementTest {
     public void givenOneKGAndThousandGrams_ShouldReturnEquals() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.KG, 1.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.GRAM, 1000.0);
-        double result = quantityMeasurement.convert(quantityMeasurement1);
-        Assert.assertEquals(1000,result,0.0);
+        boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+        Assert.assertTrue(b);
     }
     @Test
     public void givenOneTONEAndThousandKG_ShouldReturnEquals() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement(Unit.TONNE, 1.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.KG, 1000.0);
-        double result = quantityMeasurement.convert(quantityMeasurement1);
-        Assert.assertEquals(1000,result,0.0);
+        boolean b = quantityMeasurement.compareTo(quantityMeasurement1, quantityMeasurement1);
+        Assert.assertTrue(b);
     }
 
     @Test
@@ -255,6 +257,8 @@ public class QuantityMeasurementTest {
     public void givenTemparatureInFahrenheitAndCelsius_ShouldReturnEqual() throws QuantityMeasurementException {
         QuantityMeasurement quantityMeasurement  = new QuantityMeasurement(Unit.FAHRENHEIT,212.0);
         QuantityMeasurement quantityMeasurement1 = new QuantityMeasurement(Unit.CELSIUS, 100.0);
+        boolean b = quantityMeasurement.temperatureComparision(quantityMeasurement, quantityMeasurement1);
+        Assert.assertEquals(true,b);
 
 
     }
