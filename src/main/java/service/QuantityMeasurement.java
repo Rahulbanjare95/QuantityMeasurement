@@ -5,7 +5,7 @@ import utility.Unit;
 
 public class QuantityMeasurement implements IQuantityMeasurements {
     public Unit unit;
-    public Double value;
+    public double value;
 
 
     /**
@@ -13,7 +13,7 @@ public class QuantityMeasurement implements IQuantityMeasurements {
      * @param value contains unit given at declaration
      * @throws QuantityMeasurementException when values are given negative
      */
-    public QuantityMeasurement(Unit unit, Double value) throws QuantityMeasurementException {
+    public QuantityMeasurement(Unit unit, double value) throws QuantityMeasurementException {
         this.unit = unit;
         this.value = value;
         if (value < 0)
@@ -22,13 +22,13 @@ public class QuantityMeasurement implements IQuantityMeasurements {
     }
 
     /**
-     * @param quantityMeasurement represents reference containing unit and value
-     * @param quantityMeasurement1 represents reference containing unit and value
+     * @param quantity1 represents reference containing unit and value
+     * @param quantity2 represents reference containing unit and value
      * @return double result which contains sum of both the parameters
      */
     @Override
-    public double addTwoUnits(QuantityMeasurement quantityMeasurement, QuantityMeasurement quantityMeasurement1) {
-        return quantityMeasurement.value + quantityMeasurement1.value;
+    public double addTwoUnits(QuantityMeasurement quantity1, QuantityMeasurement quantity2) {
+        return quantity1.value + quantity2.value;
     }
 
     /**
@@ -45,19 +45,19 @@ public class QuantityMeasurement implements IQuantityMeasurements {
     }
 
     /**
-     * @param q1 represents reference containing one unit as Celsius
-     * @param q2 represents reference containing one unit as Fahrenheit
+     * @param fahrenheit
+     * @param  celsius
      * @return true for comparison when same unit type and false otherwise
      */
-    public boolean temperatureComparision(QuantityMeasurement q1, QuantityMeasurement q2) {
-        if (q1.unit.type.equals(q2.unit.type))
-            return (Double.compare(((q1.value - 32) * 5 / 9), q2.value * q2.unit.conversionFactor) == 0);
+    public boolean temperatureComparision(QuantityMeasurement fahrenheit, QuantityMeasurement celsius) {
+        if (fahrenheit.unit.type.equals(celsius.unit.type))
+            return (Double.compare(((fahrenheit.value - 32) * 5 / 9),
+                    celsius.value * celsius.unit.conversionFactor) == 0);
         return false;
     }
 
     /**
      * Compare two objects created in test cases to compare for equality
-     *
      * @param o Object of new QuantityMeasurement
      * @return true for same type false for different
      */
